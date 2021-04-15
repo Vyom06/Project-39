@@ -7,6 +7,9 @@ var runner, runnerImage;
 var ground, groundImage;
 var invisibleGround;
 
+//score
+var score=0
+
 //Obstacle
 var obstacleImage, obstacleGroup;
 
@@ -83,7 +86,9 @@ function setup() {
 
 function draw() {
   background(backgroundImage);
-  
+  //displaying score
+  text("Score: "+ score, 500,50);
+ 
   //GameState PLAY
   if(gameState === PLAY){
     //Runner
@@ -99,6 +104,10 @@ function draw() {
     if(ground.x < 0){
       ground.x = ground.width/2;
     }
+    
+    grounds= -(4 + 3* score/100)
+    //scoring
+    score = score + Math.round(getFrameRate()/60);
     
     //Obstacle
     spawnObstacles();
